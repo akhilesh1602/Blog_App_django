@@ -1,0 +1,25 @@
+{% extends 'main/base.html'%}
+
+{% block content %}
+<h1>create new article</h1>
+
+{% if success %}
+   <p>Form Subbmited</p>
+{% endif %}
+
+<form  method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="title" placeholder="title">
+    <textarea name="content" placeholder="Content"> </textarea>
+    <select name="author">
+        {% for author in authors %}
+        <option value="{{author.id}}"> {{ author.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+</form>
+
+{% endblock %}
